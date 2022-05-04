@@ -1,0 +1,12 @@
+[Unit]
+Description=Chia Service
+[Service]
+Type=forking
+User=curt
+WorkingDirectory=/home/curt/chia-blockchain
+#ExecStart=/usr/bin/bash -c ". ./activate && chia start %i && deactivate"
+ExecStart=/usr/bin/bash -c ". ./activate && chia start harvester -r && deactivate"
+ExecStop=/usr/bin/bash -c ". ./activate && chia stop -d all && deactivate"
+Restart=always
+[Install]
+WantedBy=multi-user.target
